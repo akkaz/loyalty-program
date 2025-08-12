@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# shadcn/ui Test Dashboard
 
-## Getting Started
+A comprehensive test dashboard showcasing all available shadcn/ui components in a single, organized interface.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Complete Component Library**: All 47 shadcn/ui components in one place
+- **Organized by Categories**: Components grouped into logical sections:
+  - **Forms**: Buttons, inputs, selects, checkboxes, radio buttons, switches, sliders, calendar, OTP input
+  - **Navigation**: Navigation menu, breadcrumbs, pagination, menubar
+  - **Layout**: Cards, separators, aspect ratio, carousel, sheets (side panels)
+  - **Feedback**: Alerts, progress bars, skeletons, dialogs, tooltips, popovers, hover cards, drawers
+  - **Data**: Tables, badges, avatars, accordion, collapsible, scroll areas
+  - **Interactive**: Command menu, toggle controls, context menus
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Interactive Examples**: All components are fully functional with real interactions
+- **Modern UI**: Clean, responsive design with dark mode support
+- **TypeScript**: Full type safety throughout the application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 15** - React framework with App Router
+- **shadcn/ui** - Complete component library (47 components)
+- **Tailwind CSS v4** - Utility-first CSS framework
+- **TypeScript** - Type-safe development
+- **Radix UI** - Accessible component primitives
+- **Lucide React** - Beautiful icons
 
-## Learn More
+## 📦 Installed Components
 
-To learn more about Next.js, take a look at the following resources:
+The following 47 shadcn/ui components are installed and demonstrated:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Accordion
+- Alert
+- Alert Dialog
+- Aspect Ratio
+- Avatar
+- Badge
+- Breadcrumb
+- Button
+- Calendar
+- Card
+- Carousel
+- Chart
+- Checkbox
+- Collapsible
+- Command
+- Context Menu
+- Dialog
+- Drawer
+- Dropdown Menu
+- Form
+- Hover Card
+- Input
+- Input OTP
+- Label
+- Menubar
+- Navigation Menu
+- Pagination
+- Popover
+- Progress
+- Radio Group
+- Resizable
+- Scroll Area
+- Select
+- Separator
+- Sheet
+- Sidebar
+- Skeleton
+- Slider
+- Sonner
+- Switch
+- Table
+- Tabs
+- Textarea
+- Toggle
+- Toggle Group
+- Tooltip
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Open your browser** and navigate to `http://localhost:3000`
+
+## 📱 Usage
+
+The dashboard is organized into tabs for easy navigation:
+
+- **Forms**: Test all input controls, buttons, and form elements
+- **Navigation**: Explore menus, breadcrumbs, and navigation patterns
+- **Layout**: See how components structure content and layouts
+- **Feedback**: Interact with alerts, dialogs, and user feedback components
+- **Data**: View tables, badges, and data display components
+- **Interactive**: Test command interfaces, toggles, and interactive elements
+
+Each component includes:
+- Live examples you can interact with
+- Real functionality (not just static displays)
+- Proper styling and animations
+- Responsive design that works on all screen sizes
+
+## 🎨 Customization
+
+The project is set up with:
+- **Zinc color palette** as the base theme
+- **CSS variables** for easy theming
+- **Dark mode support** (automatically detects system preference)
+- **Tailwind CSS v4** configuration
+- **Custom component styling** following shadcn/ui conventions
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Feel free to explore, modify, and extend this dashboard for your own projects. All components are ready to be copied into your applications.
+
+---
+
+Built with ❤️ using shadcn/ui and Next.js
