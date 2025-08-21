@@ -1,130 +1,160 @@
-# shadcn/ui Test Dashboard
+# Hotel Loyalty Program Dashboard
 
-A comprehensive test dashboard showcasing all available shadcn/ui components in a single, organized interface.
+A comprehensive hotel loyalty program management dashboard built with modern web technologies. This application enables hotel staff to manage customer loyalty programs, track guest stays, handle consent management, and provide a seamless dashboard experience.
 
-## 🚀 Features
+## 🏨 Features
 
-- **Complete Component Library**: All 47 shadcn/ui components in one place
-- **Organized by Categories**: Components grouped into logical sections:
-  - **Forms**: Buttons, inputs, selects, checkboxes, radio buttons, switches, sliders, calendar, OTP input
-  - **Navigation**: Navigation menu, breadcrumbs, pagination, menubar
-  - **Layout**: Cards, separators, aspect ratio, carousel, sheets (side panels)
-  - **Feedback**: Alerts, progress bars, skeletons, dialogs, tooltips, popovers, hover cards, drawers
-  - **Data**: Tables, badges, avatars, accordion, collapsible, scroll areas
-  - **Interactive**: Command menu, toggle controls, context menus
+### Customer Management
+- **Guest Profiles**: Complete customer information management
+- **Loyalty Tracking**: Monitor guest stays and loyalty program status
+- **Search & Filter**: Quick customer lookup by email and other criteria
 
-- **Interactive Examples**: All components are fully functional with real interactions
-- **Modern UI**: Clean, responsive design with dark mode support
-- **TypeScript**: Full type safety throughout the application
+### Dashboard & Analytics
+- **Interactive Calendar**: Visual representation of bookings and stays
+- **Policy Management**: Handle privacy policies and consent tracking
+- **Real-time Data**: Live updates on customer activities and stays
+
+### Authentication & Security
+- **Secure Login**: Protected dashboard access for hotel staff
+- **Session Management**: Secure authentication flow
+- **Role-based Access**: Controlled access to sensitive customer data
+
+### Consent & Privacy
+- **GDPR Compliance**: Track and manage customer consent preferences
+- **Privacy Policy**: Integrated policy management system
+- **Data Protection**: Secure handling of customer personal information
 
 ## 🛠️ Tech Stack
 
 - **Next.js 15** - React framework with App Router
-- **shadcn/ui** - Complete component library (47 components)
-- **Tailwind CSS v4** - Utility-first CSS framework
-- **TypeScript** - Type-safe development
-- **Radix UI** - Accessible component primitives
-- **Lucide React** - Beautiful icons
+- **TypeScript** - Full type safety and better development experience
+- **Supabase** - Backend-as-a-Service for database and authentication
+- **shadcn/ui** - Modern, accessible UI component library
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Low-level accessible component primitives
 
-## 📦 Installed Components
+## 📁 Project Structure
 
-The following 47 shadcn/ui components are installed and demonstrated:
-
-- Accordion
-- Alert
-- Alert Dialog
-- Aspect Ratio
-- Avatar
-- Badge
-- Breadcrumb
-- Button
-- Calendar
-- Card
-- Carousel
-- Chart
-- Checkbox
-- Collapsible
-- Command
-- Context Menu
-- Dialog
-- Drawer
-- Dropdown Menu
-- Form
-- Hover Card
-- Input
-- Input OTP
-- Label
-- Menubar
-- Navigation Menu
-- Pagination
-- Popover
-- Progress
-- Radio Group
-- Resizable
-- Scroll Area
-- Select
-- Separator
-- Sheet
-- Sidebar
-- Skeleton
-- Slider
-- Sonner
-- Switch
-- Table
-- Tabs
-- Textarea
-- Toggle
-- Toggle Group
-- Tooltip
+```
+src/
+├── app/
+│   ├── api/              # API routes
+│   │   ├── auth/         # Authentication endpoints
+│   │   ├── customers/    # Customer management API
+│   │   ├── stays/        # Guest stays tracking API
+│   │   └── consents/     # Consent management API
+│   ├── dashboard/        # Main dashboard pages
+│   │   ├── calendar/     # Calendar view for bookings
+│   │   └── policy/       # Privacy policy management
+│   └── login/            # Authentication pages
+├── components/ui/        # Reusable UI components
+├── lib/                  # Utilities and configurations
+│   ├── supabase.ts      # Database client configuration
+│   └── utils.ts         # Common utility functions
+└── hooks/               # Custom React hooks
+```
 
 ## 🚀 Getting Started
 
-1. **Install dependencies**:
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Supabase account and project
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/akkaz/loyalty-program.git
+   cd loyalty-program
+   ```
+
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. **Run the development server**:
+3. **Set up environment variables**:
+   Create a `.env.local` file in the root directory:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. **Run the development server**:
    ```bash
    npm run dev
    ```
 
-3. **Open your browser** and navigate to `http://localhost:3000`
+5. **Open your browser** and navigate to `http://localhost:3000`
 
-## 📱 Usage
+## 🔐 Authentication
 
-The dashboard is organized into tabs for easy navigation:
+The application uses a secure authentication system:
+- Staff login required to access the dashboard
+- Session-based authentication
+- Protected routes for sensitive operations
 
-- **Forms**: Test all input controls, buttons, and form elements
-- **Navigation**: Explore menus, breadcrumbs, and navigation patterns
-- **Layout**: See how components structure content and layouts
-- **Feedback**: Interact with alerts, dialogs, and user feedback components
-- **Data**: View tables, badges, and data display components
-- **Interactive**: Test command interfaces, toggles, and interactive elements
+## 📊 API Endpoints
 
-Each component includes:
-- Live examples you can interact with
-- Real functionality (not just static displays)
-- Proper styling and animations
-- Responsive design that works on all screen sizes
+### Customers
+- `GET /api/customers` - Retrieve customer information
+- Query parameters: `email` for customer lookup
 
-## 🎨 Customization
+### Stays
+- `GET /api/stays` - Get customer stay history
+- Query parameters: `customer_id` for filtering stays
 
-The project is set up with:
-- **Zinc color palette** as the base theme
-- **CSS variables** for easy theming
-- **Dark mode support** (automatically detects system preference)
-- **Tailwind CSS v4** configuration
-- **Custom component styling** following shadcn/ui conventions
+### Consents
+- `GET /api/consents` - Manage customer consent preferences
+- Handle GDPR compliance and privacy settings
+
+### Authentication
+- `POST /api/auth/login` - Staff authentication endpoint
+
+## 🗄️ Database Schema
+
+The application uses Supabase with the following main entities:
+- **Customers**: Guest profiles and contact information
+- **Stays**: Hotel stay records and booking history  
+- **Consents**: Privacy preferences and GDPR compliance data
+- **Users**: Staff authentication and role management
+
+## 🎨 UI Components
+
+Built with shadcn/ui for consistent, accessible design:
+- Modern card-based layouts
+- Interactive calendars for booking visualization
+- Responsive tables for data management
+- Form components with validation
+- Modal dialogs for detailed actions
+
+## 📱 Responsive Design
+
+- Mobile-first approach
+- Optimized for tablet and desktop use
+- Accessible interface following WCAG guidelines
+- Dark mode support
+
+## 🔧 Development
+
+### Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+### Environment Setup
+Make sure to configure your Supabase project with the appropriate tables and RLS policies for secure data access.
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is proprietary software for hotel loyalty program management.
 
 ## 🤝 Contributing
 
-Feel free to explore, modify, and extend this dashboard for your own projects. All components are ready to be copied into your applications.
+This is a private hotel management system. Contact the development team for contribution guidelines.
 
 ---
 
-Built with ❤️ using shadcn/ui and Next.js
+Built with ❤️ for modern hotel loyalty program management

@@ -187,19 +187,37 @@ export default function CalendarPage() {
                   backgroundColor: "hsl(142 76% 36%)", // green for completed
                   color: "white",
                   fontWeight: "bold",
-                  borderRadius: "4px"
+                  borderRadius: "50%",
+                  width: "28px",
+                  height: "28px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "auto"
                 },
                 upcoming: {
                   backgroundColor: "hsl(221 83% 53%)", // blue for upcoming
                   color: "white",
                   fontWeight: "bold",
-                  borderRadius: "4px"
+                  borderRadius: "50%",
+                  width: "28px",
+                  height: "28px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "auto"
                 },
                 cancelled: {
                   backgroundColor: "hsl(0 84% 60%)", // red for cancelled
                   color: "white",
                   fontWeight: "bold",
-                  borderRadius: "4px"
+                  borderRadius: "50%",
+                  width: "28px",
+                  height: "28px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "auto"
                 }
               }}
             />
@@ -222,140 +240,63 @@ export default function CalendarPage() {
           </CardContent>
         </Card>
 
-        {/* Stay Details */}
+        {/* All Hotel Stays */}
         <Card>
           <CardHeader>
-            <CardTitle>
-              {selectedDate ? `Stays for ${selectedDate.toLocaleDateString()}` : "Select a Date"}
-            </CardTitle>
+            <CardTitle>All Hotel Stays</CardTitle>
             <CardDescription>
-              {selectedDateStays.length > 0 
-                ? `${selectedDateStays.length} stay${selectedDateStays.length === 1 ? '' : 's'} found`
-                : "No stays found for selected date"
-              }
+              Complete history of your hotel bookings
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {selectedDateStays.length > 0 ? (
+            <ScrollArea className="h-[500px]">
               <div className="space-y-4">
-                {selectedDateStays.map((stay) => (
-                  <div key={stay.id} className="border rounded-lg p-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="font-semibold">{stay.hotel.name}</h3>
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                          <MapPin className="h-3 w-3" />
-                          {stay.hotel.company.name}
+                {stays.length > 0 ? (
+                  stays
+                    .sort((a, b) => new Date(b.arrival_date).getTime() - new Date(a.arrival_date).getTime())
+                    .map((stay) => (
+                    <div key={stay.id} className="flex items-center justify-between border rounded-lg p-4 hover:bg-accent/50 transition-colors">
+                      <div className="flex items-center space-x-4">
+                        <Hotel className="h-8 w-8 text-muted-foreground" />
+                        <div>
+                          <div className="font-medium">{stay.hotel.name}</div>
+                          <div className="text-sm text-muted-foreground flex items-center gap-1">
+                            <MapPin className="h-3 w-3" />
+                            {stay.hotel.company.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {new Date(stay.arrival_date).toLocaleDateString()} - {new Date(stay.departure_date).toLocaleDateString()} 
+                            ({stay.nights} night{stay.nights === 1 ? '' : 's'})
+                          </div>
                         </div>
                       </div>
-                      <Badge 
-                        variant={
-                          stay.status === 'completed' ? 'default' : 
-                          stay.status === 'upcoming' ? 'secondary' : 'destructive'
-                        }
-                      >
-                        {stay.status}
-                      </Badge>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <span className="text-muted-foreground">Check-in:</span>
-                        <div className="font-medium">{new Date(stay.arrival_date).toLocaleDateString()}</div>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Check-out:</span>
-                        <div className="font-medium">{new Date(stay.departure_date).toLocaleDateString()}</div>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Room:</span>
-                        <div className="font-medium">{stay.living_unit_name || 'Standard Room'}</div>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Nights:</span>
-                        <div className="font-medium">{stay.nights}</div>
+                      <div className="text-right">
+                        <Badge 
+                          variant={
+                            stay.status === 'completed' ? 'default' : 
+                            stay.status === 'upcoming' ? 'secondary' : 'destructive'
+                          }
+                          className="mb-2"
+                        >
+                          {stay.status}
+                        </Badge>
+                        <div className="text-sm text-muted-foreground">{stay.living_unit_name || 'Room'}</div>
                       </div>
                     </div>
-                    
-                    {stay.mrpreno_booking_number && (
-                      <div className="mt-3 text-xs text-muted-foreground">
-                        Booking: {stay.mrpreno_booking_number}
-                      </div>
-                    )}
+                  ))
+                ) : (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <Hotel className="h-12 w-12 mx-auto mb-4" />
+                    <p>No hotel stays found</p>
                   </div>
-                ))}
+                )}
               </div>
-            ) : (
-              <div className="flex items-center justify-center h-[300px] text-muted-foreground">
-                <div className="text-center">
-                  <CalendarDays className="h-12 w-12 mx-auto mb-4" />
-                  <p>
-                    {selectedDate 
-                      ? "No stays found for this date"
-                      : "Select a date to view stays"
-                    }
-                  </p>
-                </div>
-              </div>
-            )}
+            </ScrollArea>
           </CardContent>
         </Card>
       </div>
 
-      {/* All Stays List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>All Hotel Stays</CardTitle>
-          <CardDescription>
-            Complete history of your hotel bookings
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ScrollArea className="h-[400px]">
-            <div className="space-y-4">
-              {stays.length > 0 ? (
-                stays
-                  .sort((a, b) => new Date(b.arrival_date).getTime() - new Date(a.arrival_date).getTime())
-                  .map((stay) => (
-                  <div key={stay.id} className="flex items-center justify-between border rounded-lg p-4">
-                    <div className="flex items-center space-x-4">
-                      <Hotel className="h-8 w-8 text-muted-foreground" />
-                      <div>
-                        <div className="font-medium">{stay.hotel.name}</div>
-                        <div className="text-sm text-muted-foreground flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
-                          {stay.hotel.company.name}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {new Date(stay.arrival_date).toLocaleDateString()} - {new Date(stay.departure_date).toLocaleDateString()} 
-                          ({stay.nights} night{stay.nights === 1 ? '' : 's'})
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <Badge 
-                        variant={
-                          stay.status === 'completed' ? 'default' : 
-                          stay.status === 'upcoming' ? 'secondary' : 'destructive'
-                        }
-                        className="mb-2"
-                      >
-                        {stay.status}
-                      </Badge>
-                      <div className="text-sm text-muted-foreground">{stay.living_unit_name || 'Room'}</div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  <Hotel className="h-12 w-12 mx-auto mb-4" />
-                  <p>No hotel stays found</p>
-                </div>
-              )}
-            </div>
-          </ScrollArea>
-        </CardContent>
-      </Card>
+
     </div>
   )
 }
